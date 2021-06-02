@@ -79,16 +79,6 @@ matrix:
             - libc++-dev
             - libc++abi-dev
 
-    - os: linux
-      dist: bionic
-      compiler: clang++-libc++
-      env: UBSAN=1 TOOLSET=clang CXXSTD=11,14,17,2a VISIBILITY=global UBSAN_OPTIONS=print_stacktrace=1
-      addons:
-        apt:
-          packages:
-            - libc++-dev
-            - libc++abi-dev
-
     - os: freebsd
       compiler: clang++
       env: TOOLSET=clang CXXSTD=11,14,17,2a
