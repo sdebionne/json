@@ -24,7 +24,7 @@ matrix:
   include:
     - os: linux
       compiler: g++
-      env: TOOLSET=gcc COMPILER=g++ CXXSTD=11,14 ADDRMD=32,64
+      env: TOOLSET=gcc CXXSTD=11,14 ADDRMD=32,64
       addons:
         apt:
           packages:
@@ -33,22 +33,22 @@ matrix:
     - os: linux
       arch: arm64
       compiler: g++
-      env: TOOLSET=gcc COMPILER=g++ CXXSTD=11,14 ADDRMD=32,64
+      env: TOOLSET=gcc CXXSTD=11,14 ADDRMD=32,64
 
     - os: linux
       arch: ppc64le
       compiler: g++
-      env: TOOLSET=gcc COMPILER=g++ CXXSTD=11,14
+      env: TOOLSET=gcc CXXSTD=11,14
 
     - os: linux
       arch: s390x
       compiler: g++
-      env: TOOLSET=gcc COMPILER=g++ CXXSTD=11,14 ADDRMD=32,64
+      env: TOOLSET=gcc CXXSTD=11,14 ADDRMD=32,64
 
     - os: linux
       dist: bionic
       compiler: g++-11
-      env: UBSAN=1 TOOLSET=gcc COMPILER=g++-10 CXXSTD=03,11,14,17,20 UBSAN_OPTIONS=print_stacktrace=1 LINKFLAGS=-fuse-ld=gold
+      env: UBSAN=1 TOOLSET=gcc CXXSTD=03,11,14,17,20 UBSAN_OPTIONS=print_stacktrace=1 LINKFLAGS=-fuse-ld=gold
       addons:
         apt:
           packages:
@@ -59,7 +59,7 @@ matrix:
     - os: linux
       dist: bionic
       compiler: clang++-12
-      env: UBSAN=1 TOOLSET=clang COMPILER=clang++-11 CXXSTD=11,14,17,20 UBSAN_OPTIONS=print_stacktrace=1
+      env: UBSAN=1 TOOLSET=clang CXXSTD=11,14,17,20 UBSAN_OPTIONS=print_stacktrace=1
       addons:
         apt:
           packages:
@@ -72,7 +72,7 @@ matrix:
     - os: linux
       dist: bionic
       compiler: clang++-libc++
-      env: TOOLSET=clang COMPILER=clang++-libc++ CXXSTD=11,14,17,2a
+      env: TOOLSET=clang CXXSTD=11,14,17,2a
       addons:
         apt:
           packages:
@@ -82,7 +82,7 @@ matrix:
     - os: linux
       dist: bionic
       compiler: clang++-libc++
-      env: UBSAN=1 TOOLSET=clang COMPILER=clang++-libc++ CXXSTD=11,14,17,2a UBSAN_OPTIONS=print_stacktrace=1
+      env: UBSAN=1 TOOLSET=clang CXXSTD=11,14,17,2a UBSAN_OPTIONS=print_stacktrace=1
       addons:
         apt:
           packages:
@@ -91,42 +91,42 @@ matrix:
 
     - os: freebsd
       compiler: clang++
-      env: TOOLSET=clang COMPILER=clang++ CXXSTD=11,14,17,2a
+      env: TOOLSET=clang CXXSTD=11,14,17,2a
 
     - os: osx
       osx_image: xcode7.3
       compiler: clang++
-      env: TOOLSET=clang COMPILER=clang++ CXXSTD=11,14,1z ADDRMD=32,64
+      env: TOOLSET=clang CXXSTD=11,14,1z ADDRMD=32,64
 
     - os: osx
       osx_image: xcode8.3
       compiler: clang++
-      env: TOOLSET=clang COMPILER=clang++ CXXSTD=11,14,1z ADDRMD=32,64
+      env: TOOLSET=clang CXXSTD=11,14,1z ADDRMD=32,64
 
     - os: osx
       osx_image: xcode9.4
       compiler: clang++
-      env: TOOLSET=clang COMPILER=clang++ CXXSTD=11,14,1z ADDRMD=32,64
+      env: TOOLSET=clang CXXSTD=11,14,1z ADDRMD=32,64
 
     - os: osx
       osx_image: xcode10.1
       compiler: clang++
-      env: TOOLSET=clang COMPILER=clang++ CXXSTD=11,14,1z
+      env: TOOLSET=clang CXXSTD=11,14,1z
 
     - os: osx
       osx_image: xcode11.3
       compiler: clang++
-      env: TOOLSET=clang COMPILER=clang++ CXXSTD=11,14,1z
+      env: TOOLSET=clang CXXSTD=11,14,1z
 
     - os: osx
       osx_image: xcode12.5
       compiler: clang++
-      env: TOOLSET=clang COMPILER=clang++ CXXSTD=11,14,1z
+      env: TOOLSET=clang CXXSTD=11,14,1z
 
     - os: osx
       osx_image: xcode12.5
       compiler: clang++
-      env: UBSAN=1 TOOLSET=clang COMPILER=clang++ CXXSTD=11,14,1z UBSAN_OPTIONS=print_stacktrace=1
+      env: UBSAN=1 TOOLSET=clang CXXSTD=11,14,1z UBSAN_OPTIONS=print_stacktrace=1
 
 install:
   - BOOST_BRANCH=develop
@@ -142,7 +142,7 @@ install:
 
 script:
   - |-
-    echo "using $TOOLSET : : $COMPILER ;" > ~/user-config.jam
+    echo "using $TOOLSET : : $TRAVIS_COMPILER ;" > ~/user-config.jam
   - ./b2 -j 3 libs/json/test toolset=$TOOLSET cxxstd=$CXXSTD variant=debug,release ${ADDRMD:+address-model=$ADDRMD} ${UBSAN:+cxxflags=-fsanitize=undefined cxxflags=-fno-sanitize-recover=undefined linkflags=-fsanitize=undefined define=UBSAN=1 debug-symbols=on} ${LINKFLAGS:+linkflags=$LINKFLAGS}
 
 notifications:
