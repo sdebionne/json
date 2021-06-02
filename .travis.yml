@@ -47,44 +47,37 @@ matrix:
 
     - os: linux
       dist: bionic
-      compiler: g++-10
+      compiler: g++-11
       env: UBSAN=1 TOOLSET=gcc COMPILER=g++-10 CXXSTD=03,11,14,17,20 UBSAN_OPTIONS=print_stacktrace=1 LINKFLAGS=-fuse-ld=gold
       addons:
         apt:
           packages:
-            - g++-10
+            - g++-11
           sources:
             - sourceline: "ppa:ubuntu-toolchain-r/test"
 
     - os: linux
-      dist: trusty
-      compiler: /usr/bin/clang++
-      env: TOOLSET=clang COMPILER=/usr/bin/clang++ CXXSTD=11
-      addons:
-        apt:
-          packages:
-            - clang-3.3
-
-    - os: linux
-      dist: trusty
-      compiler: /usr/bin/clang++
-      env: TOOLSET=clang COMPILER=/usr/bin/clang++ CXXSTD=11
-      addons:
-        apt:
-          packages:
-            - clang-3.4
-
-    - os: linux
-      compiler: clang++-11
+      dist: bionic
+      compiler: clang++-12
       env: UBSAN=1 TOOLSET=clang COMPILER=clang++-11 CXXSTD=11,14,17,20 UBSAN_OPTIONS=print_stacktrace=1
       addons:
         apt:
           packages:
-            - clang-11
+            - clang-12
           sources:
             - ubuntu-toolchain-r-test
-            - sourceline: 'deb https://apt.llvm.org/xenial/ llvm-toolchain-xenial-11 main'
+            - sourceline: 'deb https://apt.llvm.org/xenial/ llvm-toolchain-xenial-12 main'
               key_url: 'https://apt.llvm.org/llvm-snapshot.gpg.key'
+
+    - os: linux
+      dist: bionic
+      compiler: clang++-libc++
+      env: TOOLSET=clang COMPILER=clang++-libc++ CXXSTD=11,14,17,2a
+      addons:
+        apt:
+          packages:
+            - libc++-dev
+            - libc++abi-dev
 
     - os: linux
       dist: bionic
@@ -122,6 +115,16 @@ matrix:
 
     - os: osx
       osx_image: xcode11.3
+      compiler: clang++
+      env: TOOLSET=clang COMPILER=clang++ CXXSTD=11,14,1z
+
+    - os: osx
+      osx_image: xcode12.5
+      compiler: clang++
+      env: TOOLSET=clang COMPILER=clang++ CXXSTD=11,14,1z
+
+    - os: osx
+      osx_image: xcode12.5
       compiler: clang++
       env: UBSAN=1 TOOLSET=clang COMPILER=clang++ CXXSTD=11,14,1z UBSAN_OPTIONS=print_stacktrace=1
 
