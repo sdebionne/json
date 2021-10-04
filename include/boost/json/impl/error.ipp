@@ -48,6 +48,16 @@ case error::exception: return "got exception";
 case error::not_number: return "not a number";
 case error::not_exact: return "not exact";
 
+case error::expected_integer: return "expected integer";
+case error::expected_number: return "expected number";
+case error::expected_string: return "expected string";
+case error::expected_bool: return "expected bool";
+case error::expected_array: return "expected array";
+case error::expected_object: return "expected object";
+case error::number_out_of_range: return "number out of range";
+case error::invalid_array_size: return "invalid array size";
+case error::invalid_member_name: return "invalid member name";
+
 case error::test_failure: return "test failure";
             }
         }
@@ -75,6 +85,15 @@ case error::array_too_large:
 case error::key_too_large:
 case error::string_too_large:
 case error::exception:
+case error::expected_integer:
+case error::expected_number:
+case error::expected_string:
+case error::expected_bool:
+case error::expected_array:
+case error::expected_object:
+case error::number_out_of_range:
+case error::invalid_array_size:
+case error::invalid_member_name:
     return condition::parse_error;
 
 case error::not_number:

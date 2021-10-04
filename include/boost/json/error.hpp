@@ -205,6 +205,33 @@ enum class error
 
     //----------------------------------
 
+    /**
+     * parse_into expected an integer
+     */
+    expected_integer,
+
+    /**
+     * parse_into expected a number
+     */
+    expected_number,
+
+    /**
+     * parse_into expected a string
+     */
+    expected_string,
+
+    /**
+     * parse_into expected a bool
+     */
+    expected_bool,
+
+    expected_array,
+    expected_object,
+    number_out_of_range,
+    invalid_array_size,
+    invalid_member_name,
+    //----------------------------------
+
     /// not a number
     not_number,
 
@@ -212,7 +239,7 @@ enum class error
     not_exact,
 
     /// test failure
-    test_failure,
+    test_failure
 };
 
 /** Error conditions corresponding to JSON errors
