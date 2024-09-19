@@ -12,6 +12,8 @@ source_group("" FILES
     parse_into.cpp
     parse_into_canada.cpp
     parse_into_citm_catalog.cpp
+    cbor_dom.cpp
+    cbor_stack.cpp
     path.cpp
     pretty.cpp
     proxy.cpp
@@ -37,6 +39,22 @@ add_executable(parse_into_citm_catalog
 )
 set_property(TARGET parse_into_citm_catalog PROPERTY FOLDER "example")
 target_link_libraries(parse_into_citm_catalog PRIVATE Boost::json)
+
+#
+
+add_executable(cbor_dom
+    cbor_dom.cpp
+)
+set_property(TARGET cbor_dom PROPERTY FOLDER "example")
+target_link_libraries(cbor_dom PRIVATE Boost::json)
+
+#
+
+add_executable(cbor_stack
+    cbor_stack.cpp
+)
+set_property(TARGET cbor_stack PROPERTY FOLDER "example")
+target_link_libraries(cbor_stack PRIVATE Boost::json)
 
 #
 
